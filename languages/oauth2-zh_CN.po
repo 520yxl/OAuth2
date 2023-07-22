@@ -1,0 +1,481 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: OAuth 2 for WordPress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-22 08:42+0000\n"
+"PO-Revision-Date: 2023-07-22 14:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: 简体中文\n"
+"Language: zh-CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.4; wp-6.1.1\n"
+"X-Domain: oauth2"
+
+#: inc/admin/namespace.php:339
+msgid "Add Application"
+msgstr "添加应用程序"
+
+#: inc/admin/namespace.php:123
+msgctxt "application"
+msgid "Add New"
+msgstr ""
+"新增\n"
+"\n"
+
+#: inc/admin/profile/namespace.php:54
+msgid "Application Name"
+msgstr "应用程序名称"
+
+#: inc/admin/class-listtable.php:120
+msgid "Approve"
+msgstr "批准"
+
+#: inc/admin/namespace.php:132
+msgid "Approved application."
+msgstr "已批准的申请"
+
+#: inc/tokens/class-authorization-code.php:92 
+#: inc/tokens/class-authorization-code.php:109
+msgid "Authorization code data is not valid."
+msgstr "授权代码数据无效"
+
+#: inc/tokens/class-authorization-code.php:128
+msgid "Authorization code has expired."
+msgstr "授权代码已过期"
+
+#: inc/tokens/class-authorization-code.php:171
+msgid "Authorization code is not valid for the specified client."
+msgstr "授权代码对指定的客户端无效"
+
+#: theme/oauth2-authorize.php:11 theme/oauth2-authorize.php:103 
+#: inc/types/class-base.php:99
+msgid "Authorize"
+msgstr ""
+"Authorize\n"
+"授权"
+
+#. %1$s: formatted date, %2$s: formatted time
+#: inc/admin/profile/namespace.php:102
+#, php-format
+msgid "Authorized %1$s at %2$s"
+msgstr "授权%1$s 在 %2$s"
+
+#: inc/admin/profile/namespace.php:49
+msgid "Authorized Applications"
+msgstr "授权的应用程序"
+
+#: inc/admin/profile/personaltokens/namespace.php:213
+msgid "Back to profile"
+msgstr "返回个人资料"
+
+#: theme/oauth2-authorize.php:104 inc/types/class-base.php:100
+msgid "Cancel"
+msgstr "取消"
+
+#: inc/admin/namespace.php:498 inc/admin/namespace.php:534 
+#: inc/admin/namespace.php:567
+msgid "Cheatin&#8217; uh?"
+msgstr "错误提示"
+
+#: inc/admin/namespace.php:177
+msgid "Client callback is required and must be a valid URL."
+msgstr "客户端回调是必需的，并且必须是有效的URL"
+
+#: inc/admin/namespace.php:167
+msgid "Client description is required"
+msgstr "需要客户描述"
+
+#. %s: client ID
+#: inc/endpoints/class-token.php:71 inc/types/class-base.php:54
+#, php-format
+msgid "Client ID %s is invalid."
+msgstr "客户端ID%s无效。"
+
+#: inc/admin/namespace.php:458
+msgid "Client Key"
+msgstr "客户端 Key"
+
+#: inc/admin/namespace.php:162
+msgid "Client name is required"
+msgstr "客户端名称是必需的"
+
+#: inc/admin/namespace.php:466
+msgid "Client Secret"
+msgstr "客户端 Secret"
+
+#: inc/admin/namespace.php:392
+msgctxt "Client type select option"
+msgid "Private"
+msgstr "私人的"
+
+#: inc/admin/namespace.php:412
+msgctxt "Client type select option"
+msgid "Public"
+msgstr "公共的"
+
+#: inc/admin/namespace.php:396
+msgid ""
+"Clients capable of maintaining confidentiality of credentials, such as "
+"server-side applications"
+msgstr "能够维护凭据机密性的客户端，如服务器端应用程序"
+
+#: inc/admin/namespace.php:416
+msgid ""
+"Clients incapable of keeping credentials secret, such as browser-based "
+"applications or desktop and mobile apps"
+msgstr "无法对凭据保密的客户端，如基于浏览器的应用程序或桌面和移动应用程序"
+
+#. %1$s: client name
+#: theme/oauth2-authorize.php:71
+#, php-format
+msgid "Connect %1$s"
+msgstr "连接%1$s"
+
+#. Description of the plugin
+msgid "Connect apps to your site using OAuth 2."
+msgstr "使用OAuth 2将应用程序连接到您的网站"
+
+#: inc/class-client.php:255
+msgid "Could not regenerate the client secret."
+msgstr "无法重新生成客户端 Secret"
+
+#: inc/tokens/class-access-token.php:96
+msgid "Could not revoke the token."
+msgstr "无法撤销令牌"
+
+#: inc/class-client.php:348
+msgid "Could not save meta value."
+msgstr "无法保存元值"
+
+#: inc/admin/profile/personaltokens/namespace.php:113
+msgid "Create a Personal Access Token"
+msgstr "创建个人访问令牌"
+
+#: inc/admin/namespace.php:441
+msgid "Create Client"
+msgstr "创建客户端"
+
+#: inc/admin/profile/namespace.php:69 inc/admin/profile/namespace.php:78
+msgid "Create personal access token"
+msgstr "创建个人访问令牌"
+
+#: inc/admin/class-listtable.php:102
+msgid "Delete"
+msgstr "Delete"
+
+#: inc/admin/namespace.php:130
+msgid "Deleted application."
+msgstr "已删除应用程序。"
+
+#: inc/admin/class-listtable.php:52
+msgid "Description"
+msgstr "描述"
+
+#: inc/admin/class-listtable.php:101
+msgid "Edit"
+msgstr "编辑"
+
+#: inc/admin/namespace.php:339
+msgid "Edit Application"
+msgstr "编辑应用程序"
+
+#: inc/admin/namespace.php:428
+msgctxt "field name"
+msgid "Callback"
+msgstr "回调"
+
+#: inc/admin/namespace.php:362
+msgctxt "field name"
+msgid "Client Name"
+msgstr "客户端名称"
+
+#: inc/admin/namespace.php:371
+msgctxt "field name"
+msgid "Description"
+msgstr "描述"
+
+#: inc/admin/namespace.php:379
+msgctxt "field name"
+msgid "Type"
+msgstr "类型"
+
+#: inc/admin/profile/personaltokens/namespace.php:142
+msgid "Generate Token"
+msgstr "生成令牌"
+
+#: inc/admin/profile/personaltokens/namespace.php:132
+msgid "Give this token a name so you can easily identify it later."
+msgstr "为该令牌指定一个名称，以便以后可以轻松识别它"
+
+#. %1$s: user login, %2$s: client name, %3$s: site name
+#: theme/oauth2-authorize.php:85
+#, php-format
+msgid ""
+"Howdy <strong>%1$s</strong>,<br/> \"%2$s\" would like to connect to %3$s."
+msgstr "您好<strong>%1$s</strong>，<br/>“%2$s”想要连接到%3$s"
+
+#. URI of the plugin
+msgid "https://github.com/WP-API/OAuth2"
+msgstr "https://github.com/WP-API/OAuth2"
+
+#. Author URI of the plugin
+msgid "https://make.wordpress.org/core/"
+msgstr "https://make.wordpress.org/core/"
+
+#: inc/admin/profile/personaltokens/namespace.php:158 
+#: inc/admin/profile/personaltokens/namespace.php:180
+msgid "Invalid action."
+msgstr "无效操作"
+
+#: inc/admin/namespace.php:273
+msgid "Invalid client ID."
+msgstr "无效的客户端ID"
+
+#: inc/types/class-implicit.php:61 inc/types/class-authorization-code.php:60
+msgid "Invalid form action."
+msgstr "表单操作无效"
+
+#: inc/types/class-base.php:88
+msgid "Invalid nonce."
+msgstr "无效的nonce"
+
+#: inc/endpoints/class-authorization.php:47
+msgid "Invalid response type specified."
+msgstr "指定的响应类型无效"
+
+#: inc/tokens/class-access-token.php:174
+msgid "Invalid user to create token for."
+msgstr "要为其创建令牌的用户无效"
+
+#: inc/admin/namespace.php:26
+msgctxt "menu title"
+msgid "Applications"
+msgstr "应用"
+
+#. %s: parameter name
+#: inc/types/class-base.php:39
+#, php-format
+msgid "Missing %s parameter."
+msgstr "缺少%s参数"
+
+#: inc/admin/profile/personaltokens/namespace.php:170
+msgid "Missing name for personal access token."
+msgstr "缺少个人访问令牌的名称"
+
+#: inc/admin/class-listtable.php:51
+msgid "Name"
+msgstr "名称"
+
+#: inc/admin/profile/namespace.php:76
+msgid "No applications authorized."
+msgstr "未授权任何应用程序"
+
+#. Name of the plugin
+msgid "OAuth 2 for WordPress"
+msgstr "OAuth 2 for WordPress"
+
+#: inc/admin/namespace.php:453
+msgid "OAuth Credentials"
+msgstr "OAuth凭据"
+
+#: inc/class-personalclient.php:64
+msgid "Personal Access Token"
+msgstr "个人访问令牌"
+
+#: inc/class-personalclient.php:75
+msgid "Personal access token manually created by the user."
+msgstr "用户手动创建的个人访问令牌"
+
+#: inc/admin/profile/personaltokens/namespace.php:100 
+#: inc/admin/profile/personaltokens/namespace.php:203
+msgid "Personal Access Tokens"
+msgstr "个人访问令牌"
+
+#: inc/class-personalclient.php:172
+msgid "Personal Access Tokens cannot be updated."
+msgstr "无法更新个人访问令牌"
+
+#: inc/class-personalclient.php:193
+msgid "Personal Access Tokens do not have an approval status."
+msgstr "个人访问令牌没有批准状态"
+
+#: inc/class-personalclient.php:124 inc/class-personalclient.php:138
+msgid "Personal Access Tokens do not support authorization codes."
+msgstr "个人访问令牌不支持授权码"
+
+#: inc/class-personalclient.php:148
+msgid "Personal Access Tokens do not support secrets."
+msgstr "个人访问令牌不支持机密"
+
+#: inc/types/class-base.php:126
+msgid "Redirect URI was required, but not found."
+msgstr "重定向URI是必需的，但找不到"
+
+#: inc/admin/namespace.php:476
+msgid "Regenerate Secret"
+msgstr "重新生成秘密"
+
+#: inc/admin/namespace.php:310
+msgid "Regenerated secret."
+msgstr "重新生成的秘密"
+
+#: theme/oauth2-authorize.php:113
+msgid "Register"
+msgstr "注册"
+
+#: inc/admin/namespace.php:118
+msgid "Registered Applications"
+msgstr "已注册的申请"
+
+#: inc/admin/namespace.php:25
+msgid "Registered OAuth Applications"
+msgstr "已注册的OAuth应用程序"
+
+#: inc/admin/profile/namespace.php:137
+msgid "Revoke"
+msgstr "撤销"
+
+#. %s: app name
+#: inc/admin/profile/namespace.php:127
+#, php-format
+msgid "Revoke access for \"%s\""
+msgstr "撤消对“%s”的访问"
+
+#. %s: personal token name
+#: inc/admin/profile/namespace.php:121
+#, php-format
+msgid "Revoke personal token \"%s\""
+msgstr "吊销个人令牌“%s”"
+
+#: inc/admin/namespace.php:445
+msgid "Save Client"
+msgstr "保存客户端"
+
+#: inc/admin/namespace.php:140
+msgid "Search Applications"
+msgstr "搜索应用程序"
+
+#: inc/admin/class-listtable.php:64
+msgid "Select consumer"
+msgstr "选择消费者"
+
+#. %1$s is the translated "Authorize" button, %2$s is the translated "Cancel" button
+#: inc/types/class-base.php:98
+#, php-format
+msgid "Select either %1$s or %2$s to continue."
+msgstr "选择%1$s或%2$s继续。"
+
+#. 1: Grant type name, 2: Grant type interface
+#: inc/namespace.php:64
+#, php-format
+msgid ""
+"Skipping invalid grant type \"%1$s\". Required interface \"%1$s\" not "
+"implemented."
+msgstr "正在跳过无效的授予类型“%1$s”。未实现所需的接口“%1$s”。"
+
+#: inc/types/class-base.php:135
+msgid "Specified redirect URI is not valid for this client."
+msgstr "指定的重定向URI对此客户端无效。"
+
+#: inc/admin/namespace.php:314
+msgid "Successfully created application."
+msgstr "已成功创建应用程序。"
+
+#: inc/authentication/namespace.php:172
+msgid "Supplied token is invalid."
+msgstr "提供的令牌无效"
+
+#: theme/oauth2-authorize.php:110
+msgid "Switch user"
+msgstr "切换用户"
+
+#: inc/admin/profile/personaltokens/namespace.php:115
+msgid ""
+"The WordPress API allows access to your site by external applications. "
+"Personal access tokens allow easy access for personal scripts, command line "
+"utilities, or during development. Generally, you shouldn't provide these to "
+"applications you don't trust, and you should treat them just like passwords."
+msgstr ""
+"WordPress API允许通过外部应用程序访问您的网站。 个人访问令牌可以轻松访问个人脚本，命令行实用程序或开发过程中。 "
+"通常，您不应该将这些提供给您不信任的应用程序，而应该像密码一样对待它们。"
+
+#: inc/admin/namespace.php:366
+msgid "This is shown to users during authorization and in their profile."
+msgstr "这在授权期间及其个人资料中向用户显示。"
+
+#: inc/admin/profile/personaltokens/namespace.php:208
+msgid "Token created!"
+msgstr "令牌已创建！"
+
+#: inc/admin/profile/namespace.php:181
+msgid "Token revoked."
+msgstr "令牌被撤销。"
+
+#: inc/admin/namespace.php:172
+msgid "Type is required."
+msgstr "需要类型。"
+
+#: inc/tokens/class-authorization-code.php:202
+msgid "Unable to create authorization code."
+msgstr "无法创建授权代码。"
+
+#: inc/tokens/class-access-token.php:190
+msgid "Unable to create token."
+msgstr "无法创建令牌。"
+
+#: inc/tokens/class-authorization-code.php:150
+msgid "Unable to delete authorization code."
+msgstr "无法删除授权代码。"
+
+#: inc/admin/profile/namespace.php:184
+msgid "Unable to revoke token."
+msgstr "无法撤销令牌。"
+
+#: inc/admin/profile/namespace.php:95
+msgid "Unknown Token"
+msgstr "未知令牌"
+
+#: inc/admin/class-listtable.php:79
+msgid "Untitled"
+msgstr "无标题"
+
+#: inc/admin/namespace.php:306
+msgid "Updated application."
+msgstr "更新的应用程序。"
+
+#. Author of the plugin
+msgid "WordPress Core Contributors (REST API Focus)"
+msgstr "WordPress核心贡献者（REST API焦点）"
+
+#: inc/admin/namespace.php:535
+msgid "You are not allowed to approve this application."
+msgstr "您不允许您批准此申请。"
+
+#: inc/admin/namespace.php:499
+msgid "You are not allowed to delete this application."
+msgstr "您不允许删除此应用程序。"
+
+#: inc/admin/namespace.php:568
+msgid "You are not allowed to edit this application."
+msgstr "您不允许编辑此应用程序。"
+
+#: inc/admin/namespace.php:262
+msgid "You do not have permission to access this page."
+msgstr "您没有权限访问此页面。"
+
+#: inc/admin/namespace.php:432
+msgid ""
+"Your application's callback URI or a list of comma separated URIs. The "
+"callback passed with the request token must match the scheme, host, port, "
+"and path of this URL."
+msgstr "您的应用程序的回调URI或逗号分隔的URI列表。 带有请求令牌传递的回调必须匹配此URL的计划，主机，端口和路径。"
+
+#: inc/admin/profile/personaltokens/namespace.php:209
+msgid ""
+"Your token has been created. Make sure to copy it now, as it won't be "
+"displayed again!"
+msgstr "您的令牌已被创建。 确保立即复制它，因为它不会再次显示！"
