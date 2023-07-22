@@ -1,29 +1,29 @@
-# Web Clients
+＃Web客户端
 
-OAuth was originally designed for working with web clients, so the process should be fairly smooth for most developers. There are some use cases that are tricky however, although not impossible to work with.
-
-
-## Distributed or Multi-Domain Clients
-
-One issue for clients with multiple domains (such as multisite WordPress installs) is callbacks: clients can only have a single registered callback, with no variation in most of the URL. This can make working with multiple domains tricky.
-
-This can be easily handled by adding extra query parameters to the callback URL, as these **can** be set on a per-request basis. These can then be handled by your callback URL to pass on to a secondary callback.
-
-For example, for a WordPress multisite, set the callback URL to a URL on the main site. A `site={id}` parameter can then be added when setting the callback for the request. The callback can then redirect the user's browser to a per-site callback based on this parameter (ensuring to pass along the `oauth_token` and `oauth_verifier` parameters.)
-
-**Note:** When using this method, be sure to verify the site. Check that the request token being handled was actually created by the site asking for it. If you're using domains instead of site IDs, be *very* careful not to redirect to an unknown domain. Failure to check this can easily lead to CSRF (phishing) attacks.
+Oauth最初是为与Web客户端合作而设计的，因此对于大多数开发人员来说，该过程应该相当平稳。 但是，有些用例很棘手，尽管并非不可能使用。
 
 
-## In-Browser Clients
+##分布式或多域客户
 
-Increasingly with modern JavaScript-based applications, the application may run entirely in the user's browser. OAuth 1 was (unfortunately) not designed for this use case. OAuth 2 goes a long way to correcting this, but as mentioned previously, [we can't use it :(](../introduction/OAuth-1.md)
+对于具有多个域的客户端（例如多站点WordPress安装）的一个问题是回调：客户端只能具有单个注册回调，而大多数URL中都没有变化。 这可能会使多个领域的工作变得棘手。
 
-This primarily falls down to  the application secret. OAuth 1.0a relies on the client secret being secret (duh) as the basis for the authorization flow. This is core to the signature process. Without this being secret, other applications can issue their own tokens as your application. OAuth 2 makes allowances for clients with public secrets with the `implicit` flow.
+可以通过在回调URL中添加额外的查询参数来轻松处理，因为这些**可以按要求设置。 然后可以通过您的回调URL来处理这些，以传递到辅助回调。
 
-The simplest way to handle this is to introduce a minimal server-side component. This can be created from scratch, or a prebuilt server such as [Guardian](http://guardianjs.com/) can be used instead.
+例如，对于WordPress多站点，将回调URL设置为主站点上的URL。 然后，可以在设置请求回调时添加``site = {id}```site = {id}'。 然后，回调可以基于此参数将用户的浏览器重定向到每个站点回调（确保沿`oauth_token`和oauth_verifier`参数传递。）。
+
+**注意：**使用此方法时，请确保验证该站点。 检查要处理的请求令牌是否实际上是由网站询问的。 如果您使用域而不是站点ID，请 *非常 *小心不要重定向到未知域。 未能检查这很容易导致CSRF（网络钓鱼）攻击。
 
 
-## Best Practices
+##浏览器客户端
 
-* Never expose secrets, such as in JS client-side applications. Instead, use a proxy to handle the OAuth authentication.
-* Similarly, never expose the verifier to sites outside of your control. The verifier is specifically intended for CSRF mitigation, so be exceedingly careful before passing it on to another URL.
+该应用程序越来越多地基于现代JavaScript应用程序，可以完全在用户的浏览器中运行。 OAuth 1（不幸的是）不是为此用例设计的。 Oauth 2对纠正此问题有很长的路要走，但是如前所述，[我们无法使用它：（](../ resives/oauth-1.md)
+
+这主要归结为应用程序的秘密。 OAuth 1.0A依靠客户秘密为秘密（DUH）作为授权流的基础。 这是签名过程的核心。 如果没有这个秘密，其他应用程序可以将自己的令牌作为您的应用程序发行。 Oauth 2为具有“隐式”流的公共秘密的客户提供津贴。
+
+处理此问题的最简单方法是引入最小的服务器端组件。 可以从头开始创建这一点，也可以使用[Guardian](http://guardianjs.com/)等预制服务器。
+
+
+##最佳实践
+
+*切勿暴露秘密，例如在JS客户端应用程序中。 而是使用代理来处理OAuth身份验证。
+*同样，切勿将验证者暴露于控制外的站点。 验证者是专门用于缓解CSRF的，因此在将其传递到另一个URL之前，请格外小心。
