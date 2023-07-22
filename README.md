@@ -1,34 +1,34 @@
-# OAuth 2.0 for WordPress
+＃WordPress的OAuth 2.0
+添加中文
+将应用程序连接到您的WordPress网站，而无需提供密码。
 
-Connect applications to your WordPress site without ever giving away your password.
+该插件使用OAuth 2协议允许授权授权； 也就是说，允许应用程序使用一组二级凭据访问站点。 这允许服务器管理员控制哪些应用程序可以访问网站，并允许用户控制哪些应用程序可以访问其数据。
 
-This plugin uses the OAuth 2 protocol to allow delegated authorization; that is, to allow applications to access a site using a set of secondary credentials. This allows server administrators to control which applications can access the site, as well as allowing users to control which applications have access to their data.
+此插件仅支持WordPress> = 4.8。
 
-This plugin only supports WordPress >= 4.8.
+##贡献者欢迎！
 
-## Contributors Welcome!
-
-This plugin works and is in use in several production environments, but the user experience and documentation could be substantially improved. We welcome input and contributions to make this tool better!
+该插件在几种生产环境中都可以使用，但是用户体验和文档可以大大改善。 我们欢迎输入和贡献，以改善此工具！
 
 
-## Credits
+##积分
 
-This plugin is licensed under the GNU General Public License v2 or later:
+该插件已根据GNU通用公共许可证V2或更高版本获得许可：
 
-> Copyright 2017 by the contributors.
+>贡献者的版权2017。
 >
-> This program is free software; you can redistribute it and/or modify
-> it under the terms of the GNU General Public License as published by
-> the Free Software Foundation; either version 2 of the License, or
-> (at your option) any later version.
+>该程序是免费软件； 您可以将其重新分配和/或修改
+>根据GNU通用公共许可证的条款
+>免费软件基金会； 许可证的第2版，或
+>（根据您的选择）任何以后的版本。
 >
-> This program is distributed in the hope that it will be useful,
-> but WITHOUT ANY WARRANTY; without even the implied warranty of
-> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> GNU General Public License for more details.
+>该程序是为了希望它有用，
+>但没有任何保修； 甚至没有暗示的保证
+>针对特定目的的适销性或健身。 看到
+> GNU通用公共许可证以获取更多详细信息。
 >
-> You should have received a copy of the GNU General Public License
-> along with this program; if not, write to the Free Software
-> Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+>您应该收到GNU通用公共许可证的副本
+>与此程序一起； 如果没有，请写信给免费软件
+> Foundation，Inc。，51 Franklin St，MA 02110-1301美国五楼
 
-Thanks to the contributors at the WCEU 2017 Contributor Day who were responsible for getting this plugin off the ground and into a usable state: @almirbi, @richardsweeney, @tfrommen.
+感谢WCEU 2017贡献者日的贡献者，他们负责将此插件从地面上脱颖而出并进入可用状态：@almirbi，@richardsweeney，@tfrommen。
