@@ -1,291 +1,80 @@
-# OAuth Authentication API
-The following document describes the HTTP API for authenticating and authorizing
-a remote client with a WordPress installation.
-
-## Framework
-The WordPress OAuth Authentication API ("OAuth API") is a HTTP-based API based
-on the [OAuth 1.0a][RFC5849]. It also builds on the OAuth 1.0a specification
-with custom parameters.
-
-This document describes OAuth API version 0.1.
-
-## Terminology
-* "access token": A long-lived token used for accessing the site. Grants
-  permissions to the client based on its scope.
-* "client": A software program that accesses the OAuth API and provides services
-  to a user.
-* "request token": A short-lived token used during the OAuth process. Does not
-  grant any permissions, and can only be used for the authorization steps.
-* "site": A WordPress installation providing the OAuth API as a service
-* "user": An end-user of an API client. Typically a registered user on the site.
-
-Note that any relative URLs are taken as relative to the site's base URL.
-
-## Motivation
-The OAuth API is motivated by three main factors:
-
-* The user should only ever enter their credentials into the site. Clients
-  should not only be discouraged from asking for user credentials, but the site
-  should also avoid providing a way to use them.
-
-* The API must work on any site. The API must only use features available to the
-  majority of sites in order to provide a useful utility.
-
-* The API should be simple to implement in clients. Developers should be able to
-  create clients by reusing existing libraries, rather than writing full
-  custom solutions.
-
-## Differences from OAuth 1.0a
-The OAuth API extends OAuth 1.0a to provide additional functionality. The
-following differences apply:
-
-* The authorization endpoint ("Resource Owner authorization endpoint") MAY
-  accept a `wp_scope` parameter, based on the OAuth 2.0 `scope` parameter.
-  (See Step 2: Authorization)
-
-## Step 0: Assessing Availability
-Before beginning the authorization process, clients SHOULD assess whether the
-site supports it. Due to the customizable nature of sites, this is not
-guaranteed, as the OAuth API can be disabled or replaced.
-
-To fulfill this requirement, the OAuth API interfaces with the WordPress JSON
-REST API ("WP API"). Most clients using the OAuth API are expected to have the
-ability to access the WP API.
-
-The OAuth API exposes information on itself via the index endpoint of the WP
-API, typically available at `/wp-json/`. The WP API is discoverable via the
-RSD mechanism, and OAuth API clients using this data SHOULD use the RSD
-mechanism, as described by the WP API documentation.
-
-### Request
-The client sends a HTTP GET request to the index endpoint of the WP API. The
-location of the index endpoint is out of scope of this document, and is handled
-by the WP API documentation.
-
-### Response
-The WP API index endpoint returns a JSON object of data relating to the site.
-The OAuth API exposes data through the `authentication` value in the `oauth1`
-property value.
-
-The `oauth1` value ("API Description object") is a JSON object with the
-following properties defined:
-
-* `request` An absolute URL giving the location of the "Temporary Credential
-  Request endpoint" (see Step 1: Request Tokens)
-* `authorize`: An absolute URL giving the location of the "Resource Owner
-  Authorization endpoint" (see Step 2: Authorization)
-* `access`: An absolute URL giving the location of the "Token Request endpoint"
-  (see Step 3: Access Tokens)
-* `version`: A version string indicating the version of the OAuth API supported
-  by the site. 
-
-## Step 1: Request Tokens
-The first step to the authorization process is to obtain a request token. This
-step asks the site to issue a temporary token, used only for the authorization
-process. This token is a short-expiry token which is not yet linked to a user.
-
-This request follows the [Temporary Credentials][oauth-request] section of
-[RFC5948][].
-
-### Request
-The client sends a HTTP POST request to `/oauth1/request` (the "Temporary
-Credential Request endpoint"). This URL is also available via the API
-Description object as the `request` property, and clients SHOULD use the URL
-from the API Description object instead of hardcoding the URL.
-
-This request should match the format as described in the OAuth 1.0a
-specification, section 2.1.
-
-This request can also contain the following parameters as an extension on top of
-the OAuth 1.0a parameters:
-
-* `wp_scope`: This is a space- or comma-separated field in the style of OAuth
-  2.0's scope field. This represents a narrowing of the available permissions to
-  the client. See Authorization Scope. This parameter is OPTIONAL, and defaults
-  to "*" (all permissions).
-
-### Response
-The OAuth API returns a URL-encoded response of the OAuth request token data, as
-described in the OAuth 1.0a specification, section 2.1.
-
-## Step 2: Authorization
-The second step to the authorization process is to request authorization from
-the user. This step sends the user to the site, where the user then
-authenticates and grants the requested permissions to the client. This
-acceptance is stored with the request data on the site.
-
-This request follows the [Resource Owner Authorization][oauth-authorize] section
-of [RFC5849][], with additions.
-
-### Request
-The client sends the user to `/oauth1/authorize` (the "Resource Owner
-Authorization endpoint"). This URL is also available via the API Description
-object as the `authorize` property, and clients SHOULD use the URL from the API
-Description object instead of hardcoding the URL.
-
-This request should match the format as described in the OAuth 1.0a
-specification, section 2.2.
-
-This request can also contain the following parameters as an extension on top of
-the OAuth 1.0a parameters:
-
-* `wp_scope`: This is a space- or comma-separated field in the style of OAuth
-  2.0's scope field. This represents a narrowing of the available permissions to
-  the client. See Authorization Scope. This parameter is OPTIONAL, and defaults
-  to either the `wp_scope` parameter as specified in the Request Token request,
-  or "*" (all permissions) otherwise.
-
-### Response
-The site will redirect the user back to the `oauth_callback` as provided in the
-Authorization step. The `oauth_token` and `oauth_verifier` parameters will be
-appended to the callback URL as per the OAuth 1.0a standard.
-
-In addition, a `wp_scope` parameter will be appended describing the actual scope
-granted (see Authorization Scope).
-
-## Step 3: Access Tokens
-The third step to the authorization process is to use the now-authorized request
-token to request an access token. This step asks the site to grant the client an
-access token to use in future requests as authentication, using the request
-token.
-
-This request follows the [Token Credentials][oauth-access] section of
-[RFC5849][].
-
-### Request
-The client sends the user to `/oauth1/access` (the "Token Request" endpoint).
-This URL is also available via the API Description object as the "access"
-property, and clients SHOULD use the URL from the API Description object instead
-of hardcoding the URL.
-
-This request should match the format as described in the OAuth 1.0a
-specification, section 2.3.
-
-### Response
-The OAuth API returns a URL-encoded response of the OAuth access token data, as
-described in the OAuth 1.0a specification, section 2.3.
-
-## Authenticated Requests
-...
-
-## Authorization Scope
-The OAuth API supports an additional parameter during both the Request Token
-request and Authorization request. This `wp_scope` parameter is a list of
-delimited strings of requested scopes. Scopes SHOULD be delimited by U+0020
-SPACE characters, URL-encoded as `%20`. Clients MAY use U+0020 SPACE characters,
-URL-encoded as `+`, or U+002C COMMA characters, URL-encoded as `%2c`.
-
-The OAuth API will also return the `wp_scope` parameter to the callback URL
-during the Authorization step, as a list of space-delimited strings of granted
-scopes (U+0020 SPACE characters are encoded as `%20`). This response parameter
-indicates the scope granted to the client for the token. This granted scope is
-strictly equal to or less permissive than the requested scope; that is, clients
-will never be granted additional permissions from those requested, but users may
-restrict the client's scope further.
-
-The default scope for clients that do not specify the `wp_scope` parameter is
-`*`, indicating all permissions will be granted. This permission grants the
-ability to perform any action the user has the capability to perform, including
-any future capabilities they may be granted. This scope SHOULD be used
-sparingly, as it presents a large attack surface.
-
-### Available Scopes
-The following scopes are available:
-
-* `read`: Ability to read any public site data, or private data that the user
-  has access to (such as privately published posts).
-
-  Maps to:
-  * `read`
-  * `read_private_*` (requires Editor or above)
-
-* `edit`: Ability to edit any public site data, or private data that the user
-  has access to. Implies `read`.
-
-  Requires Contributor or above.
-
-  Maps to:
-  * `edit_*`
-  * `delete_*`
-  * `upload_files` (requires Author or above)
-  * `moderate_comments` (requires Editor or above)
-  * `manage_categories` (requires Editor or above)
-  * `edit_others_*` (requires Editor or above)
-  * `edit_private_*` (requires Editor or above)
-  * `edit_published_*` (requires Editor or above)
-  * `delete_others_*` (requires Editor or above)
-  * `delete_private_*` (requires Editor or above)
-  * `delete_published_*` (requires Editor or above)
-
-* `user.read`: Ability to read most user data, with the exception of the user's
-  email address.
-
-* `user.email`: Ability to read the user's email address. Use of the user's
-  email address should conform to all local laws (for both the client and site)
-  with regards to spam. Implies `user.read`.
-
-* `user.edit`: Ability to edit any user data. Implies `user.read`
-  and `user.email`.
-
-* `admin.read`: Ability to read admin-only data.
-
-  Requires Admin or Super Admin.
-
-  Maps to:
-  * `list_users`
-
-* `admin.edit`: Ability to edit admin-only data.
-
-  Requires Admin or Super Admin.
-
-  Maps to:
-  * `manage_options`
-  * `install_plugins`
-  * `update_plugins`
-  * `install_themes`
-  * `switch_themes`
-  * `update_themes`
-  * `edit_theme_options`
-  * `update_core`
-  * `edit_dashboard`
-
-* `admin.users`: Ability to administrate users.
-
-  Requires Admin or Super Admin. Implies `user.edit`.
-
-  Maps to:
-  * `list_users`
-  * `create_users`
-  * `edit_users`
-  * `promote_users`
-  * `remove_users`
-  * `delete_users`
-
-* `admin.import`: Ability to import data.
-
-  Requires Admin or Super Admin. Implies `edit`.
-
-  Maps to:
-  * `import`
-
-* `admin.export`: Ability to export data.
-
-  Requires Admin or Super Admin. Implies `read`.
-
-  Maps to:
-  * `export`
-
-For most applications, `read` and `user.read` are appropriate. For any
-applications which need access to information about the current user,
-`user.read` is recommended.
-
-Any permissions requested that are not available to the current user will cause
-an error to be returned to the client. Note that for permissions like `edit`,
-users without the `upload_files` capability (e.g.) will **not** cause an error,
-as the permission encompasses other capabilities. A user without the `edit_*`
-capability **will** cause an error, however.
-
-[RFC5849]: http://tools.ietf.org/html/rfc5849
-[oauth-request]: http://tools.ietf.org/html/rfc5849#section-2.1
-[oauth-authorize]: http://tools.ietf.org/html/rfc5849#section-2.2
-[oauth-access]: http://tools.ietf.org/html/rfc5849#section-2.3
+# OAuth身份验证API
+以下文档描述了用于认证和授权的HTTP API具有WordPress安装的远程客户端。
+
+## 框架
+WordPress Oauth身份验证API（“ OAuth API”）是基于HTTP的API在[OAUTH 1.0A] [RFC5849]上。 它还基于OAuth 1.0A规范使用自定义参数。
+
+本文档描述了Oauth API版本0.1。
+
+## 术语
+*“访问令牌”：用于访问该网站的长期令牌。 赠款根据客户的范围对客户的权限。
+*“客户端”：访问OAuth API并提供服务的软件程序给用户。
+*“请求令牌”：在OAuth过程中使用的短寿命令牌。 才不是授予任何权限，只能用于授权步骤。
+*“站点”：WordPress安装提供OAuth API作为服务
+*“用户”：API客户端的最终用户。 通常是网站上的注册用户。
+
+请注意，任何相对URL都相对于站点的基本URL。
+
+## 动机
+OAuth API是由三个主要因素激励的：
+
+*用户只能将其凭据输入网站。 客户不仅应该劝阻要求用户凭据还应避免提供使用它们的方法。
+
+* API必须在任何站点上工作。 API必须仅使用可用的功能大多数站点以提供有用的实用程序。
+
+* API应该易于在客户端中实现。 开发人员应该能够通过重复现有库来创建客户，而不是完整编写自定义解决方案。
+
+## 与Oauth 1.0A的区别
+OAuth API扩展了OAuth 1.0A以提供其他功能。 这以下差异适用：
+
+*授权端点（“资源所有者授权端点”）可能
+   基于OAuth 2.0`范围参数接受`wp_scope`参数。
+   （请参阅第2步：授权）
+
+## 步骤0：评估可用性
+在开始授权过程之前，客户应评估是否站点支持它。 由于网站的可自定义性质，这不是保证，可以禁用或更换OAuth API。
+
+为了满足这一要求，OAuth API与WordPress JSON接口REST API（“ WP API”）。 预计大多数使用OAuth API的客户将具有能够访问WP API的能力。
+
+OAuth API通过WP的索引端点公开了信息API，通常可在`/wp-json/`上找到。 WP API可通过RSD机制和使用此数据的OAuth API客户端应使用RSD机制，如WP API文档所述。
+
+### 要求
+客户端向WP API的索引端点发送HTTP获取请求。 这索引端点的位置不超出本文档的范围，并且已处理由WP API文档。
+
+### 回复
+WP API索引端点返回与网站有关的数据对象。
+OAuth API通过`oauth1'的“身份验证”值公开数据适当的价值。
+
+`oauth1`值（“ API描述对象”）是一个带有的JSON对象以下属性定义：
+
+*`请求`绝对URL给出了“临时凭据”的位置
+   请求端点”（请参阅步骤1：请求令牌）
+*``授权'：绝对URL提供“资源所有者的位置”
+   授权端点”（请参阅步骤2：授权）
+*`访问：绝对URL提供“令牌请求端点”的位置
+   （请参阅步骤3：访问令牌）
+*`版本“：一个版本字符串指示OAUTH API的版本
+   通过网站。
+
+## 步骤1：请求令牌
+授权过程的第一步是获取请求令牌。 这步骤要求该网站发布临时令牌，仅用于授权过程。 这个令牌是一个短膨胀令牌，尚未链接到用户。
+
+此请求遵循[临时凭据] [OAuth-Request]部分
+[RFC5948] []。
+
+### 要求
+客户端将HTTP POST请求发送到`/oauth1/request'（临时凭证请求端点”）。此URL也可以通过API获得描述对象作为“请求”属性，客户应使用URL从API描述对象而不是硬编码URL。
+
+此请求应如OAuth 1.0A中所述的格式匹配规范，第2.1节。
+
+此请求还可以包含以下参数作为顶部的扩展程序
+OAuth 1.0A参数：
+
+*``wp_scope`：这是Oauth风格的空间或逗号分隔的领域
+   2.0的范围字段。 这代表了可用权限的缩小客户端。 请参阅授权范围。 此参数是可选的，默认到“*”（所有权限）。
+
+### 回复
+OAuth API返回OAuth请求令牌数据的URL编码响应，如在OAUTH 1.0A规范中描述的第2.1节。
+
+## 步骤2：授权
+授权过程的第二步是请求授权用户。 此步骤将用户发送到网站，
