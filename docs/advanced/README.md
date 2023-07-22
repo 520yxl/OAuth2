@@ -1,4 +1,4 @@
-# Advanced
+# 先进的
 
-* [Desktop/Mobile Clients](Desktop.md)
-* [Web Clients](Web.md)
+* [桌面/移动客户端](Desktop.md)
+* [Web客户端](Web.md)
