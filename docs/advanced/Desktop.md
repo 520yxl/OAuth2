@@ -1,34 +1,34 @@
-# Desktop/Mobile Clients
+# 桌面/移动客户端
 
-OAuth was originally designed for web applications, so desktop and mobile clients may wish to use the OAuth flow slightly differently. The authorization flow for OAuth requires both a browser and a callback URL for the second leg.
-
-
-## Callback URL Schemes
-
-The OAuth plugin supports any valid URL scheme, including custom schemes. This allows using custom schemes for callback URLs, which can then trigger your application. Note that for custom schemes, the authority (user and password) part must be empty, and the host **must not be empty** and must not contain invalid characters (such as `:#?[]`).
-
-For example, the following URLs are **invalid**:
-* `custom-app://`
-* `custom-app://?oauth_callback`
-* `custom-app://user:pass@oauth_callback`
-
-The following URLs are **valid**:
-* `custom-app://oauth_callback`
-* `custom-app://oauth?callback`
-* `custom-app://oauth/callback`
-* `custom-app://oauth_callback:42`
+Oauth最初是为Web应用程序设计的，因此桌面和移动客户端可能希望使用OAuth流略有不同。 OAuth的授权流既需要浏览器和第二回合的回调URL。
 
 
-## Out-of-Band Flow
+## 回调URL计划
 
-For clients without the ability to handle a callback URL, an out-of-band flow can be used. Rather than redirecting the user after authorization, this flow displays the verifier token to the user to copy to the client.
+OAuth插件支持任何有效的URL方案，包括自定义方案。 这允许使用自定义方案进行回调URL，然后可以触发您的应用程序。 请注意，对于自定义方案，权威（用户和密码）部分必须为空，并且主机**必须为空**，并且不能包含无效的字符（例如`：＃？[]`）。
 
-To trigger the out-of-band flow, the callback URL must be set to `oob`. After the user has authorized the application, they'll be redirected to an internal page on the site which displays the verifier token. This can either be copy-and-pasted into the client (e.g. for command-line applications), or typed in manually.
+例如，以下URL是**无效**：
+*`custom-app：//````
+*`custom-app：//？oauth_callback`
+*`custom-app：//用户：通过@oauth_callback`
 
-With the callback URL set to `oob`, the supplied callback and registered callback must match exactly, and must be `oob`. This means that clients can either have a callback URL **or** out-of-band handling, and cannot work with both.
+以下URL **有效**：
+*`custom-app：// oauth_callback`
+*``custom-app：// oauth？callback`
+*``custom-app：// oauth/callback`
+*`custom-app：// oauth_callback：42`
 
 
-## Best Practices
+## 带外流
 
-* Clients should use callback URLs if at all possible, with out-of-band flow as a last resort.
-* Clients should prefer the system browser rather a built-in browser, as the former typically has allows better usage of saved passwords. Using a built-in browser also gives a dangerous signal to users, as a compromised app could fake a login screen and phish their credentials.
+对于没有能力处理回调URL的客户，可以使用带外流量。 该流程没有在授权后重定向用户，而是将验证程序令牌显示给用户以将其复制到客户端。
+
+为了触发带外流，必须将回调URL设置为“ OOB”。 用户授权应用程序后，将将它们重定向到显示验证者令牌的网站上的内部页面。 可以将其复制到客户端中（例如，用于命令行应用程序），也可以手动键入。
+
+将回调URL设置为“ OOB”后，所提供的回调和注册回调必须完全匹配，并且必须为`oob'。 这意味着客户端可以使用回调URL **或**频带外处理，并且不能同时使用。
+
+
+## 最佳实践
+
+*如果可能的话，客户应使用回调URL，将带外流程作为最后的度假胜地。
+*客户端应该更喜欢系统浏览器而不是内置浏览器，因为前者通常可以更好地使用保存的密码。 使用内置的浏览器还向用户发出了危险的信号，因为折衷的应用程序可以伪造登录屏幕并给他们的凭证提供信号。
