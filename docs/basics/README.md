@@ -1,5 +1,4 @@
-# Basics
-
-* [Registering an Application](Registering.md)
-* [The Authorization Flow](Auth-Flow.md)
-* [Signing Requests](Signing.md)
+# 基础知识
+*[注册应用程序]（Registering.md）
+*[授权流]（Auth-Flow.md）
+*[签名请求]（Signing.md）
