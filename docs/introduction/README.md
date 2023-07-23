@@ -1,5 +1,5 @@
-# Introduction
+# 引言
 
-* [Why OAuth?](OAuth.md)
-* [Why OAuth 1.0a?](OAuth-1.md)
-* [Setup](Setup.md)
+* [为什么使用OAuth?](OAuth.md)
+* [为什么使用OAuth 1.0a?](OAuth-1.md)
+* [设置](Setup.md)
