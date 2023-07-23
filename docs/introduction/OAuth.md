@@ -1,9 +1,5 @@
-# Why OAuth?
-
-When developing a REST API, there's no shortage of possible authentication options to connect to your site. These options span from simple username and password schemes up to much more complex systems. Why choose OAuth out of all of these?
-
-OAuth is built around a singular core concept: **delegated authorization**. Unlike traditional username and password systems, or even API keys, OAuth doesn't have a single set of credentials. Instead, it splits the concept of credentials into two: client credentials, and user tokens. Clients register with sites they want to access, but this doesn't give them any inherent access. Users then authorize the client to perform actions on their behalf.
-
-Decoupling these pieces gives better flexibility and security. If a client is compromised or accidentally leaks credentials, these can be revoked, disconnecting the client from all users. If a single user wants to disconnect the client, they can revoke the user token issued to the client. Combined, this gives both site owners and users control over their data.
-
-This also crucially avoids the anti-pattern of giving credentials to external applications. In particular, OAuth itself provides **no ability to exchange a username and password for a user token**. This reinforces that users should never give their username and password to other applications. This also helps mitigate phishing exploits.
+# 为什么是OAuth?
+在开发REST API时，不缺少连接到站点的可能身份验证选项。这些选项从简单的用户名和密码方案到更复杂的系统。为什么在所有这些中选择OAuth？
+OAuth是围绕一个单一的核心概念构建的：**委托授权**。与传统的用户名和密码系统，甚至API密钥不同，OAuth没有一组凭据。相反，它将凭据的概念分为两部分：客户端凭据和用户令牌。客户端向他们想要访问的网站注册，但这不会给他们任何固有的访问权限。然后，用户授权客户端代表他们执行操作。
+将这些部件解耦可提供更好的灵活性和安全性。如果客户端受到威胁或意外泄露凭据，则可以吊销这些凭据，从而断开客户端与所有用户的连接。如果单个用户想要断开客户端的连接，他们可以吊销颁发给客户端的用户令牌。综合起来，这使网站所有者和用户都可以控制他们的数据。
+这也至关重要地避免了向外部应用程序提供凭据的反模式。特别是，OAuth本身**没有提供用用户名和密码交换用户令牌的能力**。这强化了用户永远不应该将用户名和密码提供给其他应用程序。这也有助于减少网络钓鱼漏洞。
