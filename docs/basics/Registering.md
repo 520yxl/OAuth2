@@ -1,17 +1,9 @@
-# Registering an Application
-
-Before you can talk to the server, you need to establish your credentials on the site. This involves registering your application with the site.
-
-Applications can only be registered by site administrators, and must be registered on each site individually. (We're working on making it possible in the future to register once with a central authority to make this process easier.)
-
-To register an application, open your site dashboard and head to Users > Applications, then click Add New. You'll need to enter the name of the application, an optional description, and the callback URL. This callback URL is used during the authorization process to redirect users back to after connecting. This URL can be changed later if you don't have a callback endpoint yet.
-
-## Callback URLs
-
-The callback URL is used during the authorization process. After users authorize your application on the site, they'll be redirected back to your callback URL. This callback needs to save the verifier token passed in, which is used in the third leg of the flow. The callback also typically starts the third leg (token exchange) on the server side. (The next section, [the Authorization Flow](Auth-Flow.md), expands more on how the callback URL is used.)
-
-At the start of the OAuth flow, you pass in your OAuth callback URL for the specific request, which allows you to customise the callback URL for each request as needed. The OAuth plugin requires that your supplied callback URL match the scheme, authority (user and password part), host, port, and path of the registered callback URL. Only the query parameters and fragment (hash part) may differ from your registered URL. (This differs from some OAuth implementations, which allow subpaths of the callback URL.)
-
-For sites with multiple domains or subdomains (e.g. a WordPress multisite network), the recommended method for handling this is to have a singular "main" callback URL which redirects to the specific site. During the request process, the site ID can then be added to the callback URL as a query parameter.
-
-[Non-web applications](../advanced/Desktop.md) may wish to use custom URL schemes, or out-of-band handling. Out-of-band handling is triggered by setting the callback URL to the string `oob`. Rather than redirect after authorization, the site will instead display the verifier code to the user, which they then copy-and-paste or otherwise provide to the application.
+# 注册应用程序
+在与服务器对话之前，您需要在网站上建立凭据。这涉及到在网站上注册您的应用程序。
+应用程序只能由站点管理员注册，并且必须在每个站点上单独注册。（我们正在努力使未来有可能在中央机构注册一次，以使这一过程更容易。）
+要注册应用程序，请打开您的网站仪表板，前往“用户”>“应用程序”，然后单击“添加新应用程序”。您需要输入应用程序的名称、可选说明和回调URL。此回调URL在授权过程中用于在连接后将用户重定向回。如果您还没有回调端点，则可以稍后更改此URL。
+## 回调URL
+回调URL在授权过程中使用。用户在网站上授权您的应用程序后，他们将被重定向回您的回调URL。此回调需要保存传入的验证器令牌，该令牌用于流的第三段。回调通常还启动服务器端的第三个分支（令牌交换）。（下一节[授权流](Auth-Flow.md)将详细介绍如何使用回调URL。）
+在OAuth流开始时，您传入特定请求的OAuth回调URL，这允许您根据需要为每个请求自定义回调URL。OAuth插件要求您提供的回调URL与注册回调URL的方案、权限（用户和密码部分）、主机、端口和路径相匹配。只有查询参数和片段（哈希部分）可能与您注册的URL不同。（这与一些OAuth实现不同，后者允许回调URL的子路径。）
+对于具有多个域或子域的网站（例如WordPress多站点网络），建议的处理方法是使用单一的“主”回调URL重定向到特定网站。在请求过程中，站点ID可以作为查询参数添加到回调URL中。
+[非web应用程序](../advanced/Desktop.md)可能希望使用自定义URL方案或带外处理。带外处理是通过将回调URL设置为字符串“oob”来触发的。网站不会在授权后重定向，而是向用户显示验证器代码，然后用户复制并粘贴或以其他方式提供给应用程序。
